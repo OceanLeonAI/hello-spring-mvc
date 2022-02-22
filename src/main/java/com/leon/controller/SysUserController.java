@@ -21,4 +21,5 @@ public class SysUserController {
         request.setAttribute("user", user);
         return "userinfo";
     }
+
 }
