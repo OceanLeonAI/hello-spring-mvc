@@ -1,9 +1,13 @@
 package com.leon.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.leon.entity.SysUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/test")
@@ -11,13 +15,25 @@ public class TestController {
 
     @ResponseBody
     @RequestMapping("/testPost")
-    public String testPost(String userId) {
+    public Map<Object, Object> testPost(String userId) {
         System.out.println("userId ---> " + userId);
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", "leon");
+        Map map = new HashMap<Object, Object>();
+        map.put("name", "leon");
+        map.put("age", 20);
+        map.put("address", "成都市高新区xxx镇xxx路");
 
-        return "hello world";
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/testPostUser")
+    public SysUser testPostUser(String userId) {
+        SysUser sysUser = new SysUser();
+        sysUser.setUsername("OceanLeonAI");
+        sysUser.setCreatedate(Calendar.getInstance().getTime());
+        System.out.println(sysUser);
+        return sysUser;
     }
 
 }
