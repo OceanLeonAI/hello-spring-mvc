@@ -31,8 +31,8 @@ public class SysUserServiceImpl implements SysUserService {
 
         int insert = sysUserMapper.insert(sysUser);
 
-        String str = null;
-        str.toString();
+//        String str = null;
+//        str.toString();
 
         return insert == 1;
     }

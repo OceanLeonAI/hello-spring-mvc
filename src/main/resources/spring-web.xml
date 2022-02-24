@@ -37,12 +37,27 @@
      -->
     <mvc:default-servlet-handler/>
 
-    <!-- 3.配置jsp 显示ViewResolver -->
+    <!-- 3.配置jsp 显示 ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="com.leon.controller"/>
+    <context:component-scan base-package="com.leon.*"/>
+
+    <!-- 拦截器配置 -->
+    <mvc:interceptors>
+        <!-- 配置一个全局拦截器，拦截所有请求 -->
+        <!--        <bean id="globalInterceptor" class="com.leon.interceptor.GlobalInterceptor"/>-->
+        <mvc:interceptor>
+            <!-- 配置拦截器作用的路径 -->
+            <mvc:mapping path="/**"/>
+            <!-- 配置不需要拦截作用的路径 -->
+            <mvc:exclude-mapping path=""/>
+            <!-- 定义<mvc:interceptor>元素中，表示匹配指定路径的请求才进行拦截 -->
+            <bean class="com.leon.interceptor.GlobalInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

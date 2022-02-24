@@ -6,6 +6,40 @@
 
     <!--    <display-name>Archetype Created Web Application</display-name>-->
     <display-name>hello-spring-mvc demo</display-name>
+
+    <!-- 0 context-param -->
+    <!-- 1 listener -->
+    <!-- 2 filter -->
+    <!-- 配置字符过滤 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--
+    全局 Filter 测试
+    执行顺序和配置顺序相同
+    -->
+    <filter>
+        <filter-name>GlobalFilter</filter-name>
+        <filter-class>com.leon.filter.GlobalFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>GlobalFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- 3 servlet -->
+
     <!--1.配置前置控制器 -->
     <servlet>
         <servlet-name>SpringDispatcherServlet</servlet-name>
@@ -23,7 +57,18 @@
 
     <!--2.欢迎文件-->
     <welcome-file-list>
-<!--        <welcome-file>/page/index.jsp</welcome-file>-->
+        <!-- <welcome-file>/page/index.jsp</welcome-file> -->
+        <!-- <welcome-file>/WEB-INF/page/404.jsp</welcome-file> -->
         <welcome-file>/WEB-INF/page/index.jsp</welcome-file>
     </welcome-file-list>
+
+    <!-- 异常处理 -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/common/errors/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/common/errors/500.jsp</location>
+    </error-page>
 </web-app>

@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @ToString
 public class SysUser implements Serializable {

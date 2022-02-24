@@ -32,10 +32,11 @@
     </style>
 </head>
 <body>
-<h1>这儿写html内容</h1>
+<h1>500 INTERNAL SERVE ERROR</h1>
 </body>
 </html>
 <script type="text/javascript">
+
     $(document).ready(function () {
         console.log("$(document).ready... called...")
     });

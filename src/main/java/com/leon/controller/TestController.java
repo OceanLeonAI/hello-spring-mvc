@@ -1,6 +1,7 @@
 package com.leon.controller;
 
 import com.leon.entity.SysUser;
+import com.leon.exception.BusinessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,6 +35,11 @@ public class TestController {
         sysUser.setCreatedate(Calendar.getInstance().getTime());
         System.out.println(sysUser);
         return sysUser;
+    }
+
+    @RequestMapping("/testBusinessException")
+    public SysUser testBusinessException(String userId) {
+        throw new BusinessException();
     }
 
 }
