@@ -1,7 +1,7 @@
 package com.leon.service.impl;
 
-import com.leon.dao.SysUserMapper;
 import com.leon.entity.SysUser;
+import com.leon.mapper.SysUserMapper;
 import com.leon.service.SysUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,10 +29,15 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public boolean insert(SysUser sysUser) {
 
+        sysUser.setUsername("测试事务回滚");
+
         int insert = sysUserMapper.insert(sysUser);
 
 //        String str = null;
 //        str.toString();
+        if (true) {
+            throw new ArrayIndexOutOfBoundsException("故意抛出数组越界异常测试");
+        }
 
         return insert == 1;
     }

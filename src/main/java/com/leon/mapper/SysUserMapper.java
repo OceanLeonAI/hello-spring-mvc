@@ -1,4 +1,4 @@
-package com.leon.dao;
+package com.leon.mapper;
 
 import com.leon.entity.SysUser;
 

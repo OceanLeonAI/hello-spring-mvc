@@ -50,10 +50,7 @@
 <body>
 <a href="<%=path%>/page/index">BACK TO INDEX</a>
 <div>跳转信息：${message}</div>
-<div>用户信息</div>
-<div>用户名：${user.username}</div>
-<div>用户编码：${user.usercode}</div>
-<div class="button" onclick="addUser();">add user</div>
+<h1>HELLO WORLD</h1>
 </body>
 </html>
 <script type="text/javascript">
@@ -68,7 +65,6 @@
             async: true,    //或false,是否异步
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(obj), // 后台用 @RequestBody形式接收参数，前台需要传递JSON字符串
-            // data: obj, // 模拟 http 400 Bad Request
             // timeout: 5000,    //超时时间
             dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend: function (xhr) {

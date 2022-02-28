@@ -36,6 +36,7 @@
 <body>
 <h1 class="item" onclick="consoleHelloWorld()">CONSOLE HELLO WORLD</h1>
 <hr/>
+<h1 class="item" onclick="gotoPage('helloWorld')">hello world</h1>
 <h1 class="item" onclick="gotoPage('userinfo')">userinfo</h1>
 <h1 class="item" onclick="gotoPage('forward')">forward</h1>
 <h1 class="item" onclick="gotoPage('forwardByRequestDispatcherForward')">forwardByRequestDispatcherForward</h1>

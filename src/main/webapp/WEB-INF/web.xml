@@ -4,11 +4,21 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
          http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-    <!--    <display-name>Archetype Created Web Application</display-name>-->
     <display-name>hello-spring-mvc demo</display-name>
 
     <!-- 0 context-param -->
+    <!-- spring总配置文件加载地址，保证 Spring 配置文件优先被加载 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:app-context.xml</param-value>
+    </context-param>
+
     <!-- 1 listener -->
+    <!-- 项目启动类 -->
+    <listener>
+        <listener-class>com.leon.listener.GlobalListener</listener-class>
+    </listener>
+
     <!-- 2 filter -->
     <!-- 配置字符过滤 -->
     <filter>
@@ -17,6 +27,10 @@
         <init-param>
             <param-name>encoding</param-name>
             <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -37,32 +51,34 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
     <!-- 3 servlet -->
-
     <!--1.配置前置控制器 -->
     <servlet>
-        <servlet-name>SpringDispatcherServlet</servlet-name>
+        <servlet-name>SpringMVC</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <!-- 引入spring配置文件 -->
-            <param-value>classpath:spring-*.xml</param-value>
+            <!-- 此处配置的是SpringMVC的配置文件 -->
+            <param-value>classpath:spring/spring-mvc.xml</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SpringDispatcherServlet</servlet-name>
+        <servlet-name>SpringMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <!--2.欢迎文件-->
     <welcome-file-list>
+        <!-- 如果项目包含登录页面（放在 webapp下 WEB-INF以外），配置可以放在这个节点，项目启动完成后会默认跳转到登录页 -->
         <!-- <welcome-file>/page/index.jsp</welcome-file> -->
-        <!-- <welcome-file>/WEB-INF/page/404.jsp</welcome-file> -->
         <welcome-file>/WEB-INF/page/index.jsp</welcome-file>
     </welcome-file-list>
 
     <!-- 异常处理 -->
+    <error-page>
+        <error-code>400</error-code>
+        <location>/common/errors/400.jsp</location>
+    </error-page>
     <error-page>
         <error-code>404</error-code>
         <location>/common/errors/404.jsp</location>
@@ -71,4 +87,12 @@
         <error-code>500</error-code>
         <location>/common/errors/500.jsp</location>
     </error-page>
+    <error-page>
+        <!-- 捕获运行时异常 -->
+        <exception-type>java.lang.RuntimeException</exception-type>
+        <!-- 捕获一切异常 -->
+        <!--<exception-type>java.lang.Throwable</exception-type>-->
+        <location>/common/errors/runtimeexception.jsp</location>
+    </error-page>
+
 </web-app>

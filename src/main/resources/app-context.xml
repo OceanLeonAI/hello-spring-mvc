@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 国际化资源文件加载 -->
+    <!-- 国际化资源文件加载 -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <array>
+                <value>classpath:i18n/message</value>
+                <value>classpath:spring/messages_zh_CN</value>
+                <value>classpath:org/springframework/security/messages</value>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 映射properties文件 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 可以将配置文件放这个节点 -->
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Spring Bean 工具类 -->
+    <bean id="serviceLocator" class="com.leon.utils.ServiceLocator"></bean>
+
+    <!-- 导入相关配置文件 -->
+    <import resource="spring/spring-datasource.xml"/>
+    <import resource="spring/spring-mybatis.xml"/>
+    <import resource="spring/spring-transaction.xml"/>
+    <!--    <import resource="spring/spring-mvc.xml"/>-->
+
+</beans>
+

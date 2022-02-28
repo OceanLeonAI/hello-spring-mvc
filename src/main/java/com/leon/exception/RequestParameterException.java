@@ -1,8 +1,8 @@
 package com.leon.exception;
 
 /**
- * 请求异常
+ * 请求参数
  */
-public class RequestParameterException   {
+public class RequestParameterException extends BaseException {
 
 }

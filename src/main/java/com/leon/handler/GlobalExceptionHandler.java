@@ -4,10 +4,15 @@
 package com.leon.handler;
 
 import com.leon.exception.BusinessException;
+import com.leon.exception.RequestParameterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +32,8 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(Exception.class)
-    @ResponseBody
+    // @ResponseStatus(HttpStatus.NOT_FOUND) // 这个可以控制返回的HTTP状态码
+/*    @ResponseBody
     Map handleException(Exception e) {
         LOGGER.info(e.getMessage(), e);
         Map<Object, Object> result = new HashMap<>();
@@ -36,6 +42,13 @@ public class GlobalExceptionHandler {
         result.put("success", false);
         result.put("data", null);
         return result;
+    }*/
+    ModelAndView handleException(Exception e) {
+        LOGGER.info(e.getMessage(), e);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/common/errors/generic-error.jsp");
+        modelAndView.addObject("message","这个是通用业务异常");
+        return modelAndView;
     }
 
     /**
@@ -46,6 +59,23 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
     Map handleBusinessException(BusinessException e) {
+        LOGGER.info(e.getMessage(), e);
+        Map<Object, Object> result = new HashMap<>();
+        result.put("code", 1001);
+        result.put("message", "业务异常");
+        result.put("success", false);
+        result.put("data", null);
+        return result;
+    }
+
+    /**
+     * 处理所有业务异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(RequestParameterException.class)
+    @ResponseBody
+    Map handleRequestParameterException(RequestParameterException e) {
         LOGGER.info(e.getMessage(), e);
         Map<Object, Object> result = new HashMap<>();
         result.put("code", 1001);
