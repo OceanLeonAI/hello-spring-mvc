@@ -33,11 +33,11 @@ public class SysUserServiceImpl implements SysUserService {
 
         int insert = sysUserMapper.insert(sysUser);
 
-//        String str = null;
-//        str.toString();
-        if (true) {
-            throw new ArrayIndexOutOfBoundsException("故意抛出数组越界异常测试");
-        }
+        String str = null;
+        str.toString();
+//        if (true) {
+//            throw new ArrayIndexOutOfBoundsException("故意抛出数组越界异常测试");
+//        }
 
         return insert == 1;
     }
