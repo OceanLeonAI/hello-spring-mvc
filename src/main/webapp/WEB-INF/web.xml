@@ -60,7 +60,9 @@
             <param-name>contextConfigLocation</param-name>
             <!-- 此处配置的是SpringMVC的配置文件 -->
             <param-value>classpath:spring/spring-mvc.xml</param-value>
+            <!--<param-value>classpath:spring/spring-*.xml</param-value>-->
         </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>

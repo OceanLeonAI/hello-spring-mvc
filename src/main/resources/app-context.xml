@@ -4,7 +4,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 国际化资源文件加载 -->
-    <!-- 国际化资源文件加载 -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <array>
@@ -29,9 +28,11 @@
     <bean id="serviceLocator" class="com.leon.utils.ServiceLocator"></bean>
 
     <!-- 导入相关配置文件 -->
+    <import resource="spring/spring-context.xml"/>
     <import resource="spring/spring-datasource.xml"/>
-    <import resource="spring/spring-transaction.xml"/>
     <import resource="spring/spring-mybatis.xml"/>
+    <import resource="spring/spring-transaction.xml"/>
+    <!-- 不需要引入 spring-mvc 的配置，因为分别在两阶段加载 -->
     <!--    <import resource="spring/spring-mvc.xml"/>-->
 
 </beans>

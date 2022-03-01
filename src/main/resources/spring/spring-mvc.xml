@@ -15,17 +15,10 @@
         (1)自动注册DefaultAnootationHandlerMapping,AnotationMethodHandlerAdapter
         (2)提供一些列：数据绑定，数字和日期的format @NumberFormat, @DateTimeFormat, xml,json默认读写支持
     -->
-
-    <!-- 默认扫描路径 use-default-filters=true 默认的时候会加载Component等注解 -->
-    <context:component-scan base-package="com.leon.controller" use-default-filters="true">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:include-filter type="annotation"
-                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
-    </context:component-scan>
-
+    <context:annotation-config/>
 
     <!-- 开启注解驱动 -->
+    <!-- 自动注册DefaultAnnotationHandlerMapping 与AnnotationMethodHandlerAdapter -->
     <mvc:annotation-driven enable-matrix-variables="true">
         <mvc:message-converters register-defaults="true">
             <!--@RequestBoby,@ResponseBody采用FastJson支持 替換消息轉換類-兼容SpringMVC4.2以上版本 maxp add -->
@@ -39,7 +32,6 @@
                 </property>
             </bean>
         </mvc:message-converters>
-
     </mvc:annotation-driven>
 
     <!-- 2.静态资源默认servlet配置
@@ -55,8 +47,17 @@
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="com.leon.*"/>
+    <!-- 默认扫描路径 use-default-filters=true 默认的时候会加载Component等注解 -->
+    <context:component-scan base-package="com.leon.**" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <!-- <context:include-filter type="annotation"
+                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
+        <!-- 排除 Service -->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->
+    </context:component-scan>
 
     <!-- 拦截器配置 -->
     <mvc:interceptors>
