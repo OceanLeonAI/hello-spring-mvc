@@ -67,8 +67,8 @@
             type: 'POST', //POST/GET
             async: true,    //或false,是否异步
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(obj), // 后台用 @RequestBody形式接收参数，前台需要传递JSON字符串
-            // data: obj, // 模拟 http 400 Bad Request
+            // data: JSON.stringify(obj), // 后台用 @RequestBody形式接收参数，前台需要传递JSON字符串
+            data: obj, // 模拟 http 400 Bad Request
             // timeout: 5000,    //超时时间
             dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend: function (xhr) {

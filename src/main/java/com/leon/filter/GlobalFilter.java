@@ -1,6 +1,5 @@
 package com.leon.filter;
 
-import com.leon.handler.GlobalExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,11 +24,28 @@ public class GlobalFilter implements Filter {
         // Filter.super.init(filterConfig);
     }
 
-
+    /**
+     * @param servletRequest
+     * @param servletResponse
+     * @param filterChain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         LOGGER.info("doFilter of GlobalFilter called...");
-        filterChain.doFilter(servletRequest, servletResponse);
+        try {
+            filterChain.doFilter(servletRequest, servletResponse);
+        } catch (RuntimeException ex) { // 异常从大到小
+            LOGGER.error("{}", ex.getMessage());
+            throw ex;
+        } catch (Exception ex) {
+            LOGGER.error("{}", ex.getMessage());
+            throw ex;
+        } catch (Throwable throwable) {
+            LOGGER.error("{}", throwable.getMessage());
+            throw throwable;
+        }
     }
 
     @Override

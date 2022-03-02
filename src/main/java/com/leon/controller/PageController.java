@@ -23,8 +23,13 @@ public class PageController {
      * @throws Exception
      */
     @RequestMapping("/index")
-    public String index(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        return "index";
+    public ModelAndView index(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        modelAndView.addObject("message","这是通过modelAndView.addObject()设置的数据");
+
+        return modelAndView;
     }
 
     /**

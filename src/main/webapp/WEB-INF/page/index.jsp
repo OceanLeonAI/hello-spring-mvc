@@ -34,6 +34,8 @@
     </style>
 </head>
 <body>
+
+<h1>${message}</h1>
 <h1 class="item" onclick="consoleHelloWorld()">CONSOLE HELLO WORLD</h1>
 <hr/>
 <h1 class="item" onclick="gotoPage('helloWorld')">hello world</h1>

@@ -33,6 +33,7 @@
 </head>
 <body>
 <h1>500 INTERNAL SERVE ERROR</h1>
+<h1>错误信息${message}</h1>
 </body>
 </html>
 <script type="text/javascript">
