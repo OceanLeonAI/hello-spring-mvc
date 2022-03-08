@@ -97,4 +97,13 @@
         <location>/common/errors/runtimeexception.jsp</location>
     </error-page>
 
+    <!-- 非必填 -->
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/mysql</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+
 </web-app>

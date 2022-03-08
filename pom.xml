@@ -165,6 +165,14 @@
             <version>${swagger.models.version}</version>
         </dependency>
 
+        <!-- sql server 驱动 -->
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>8.4.1.jre8</version>
+        </dependency>
+
     </dependencies>
 
     <build>
