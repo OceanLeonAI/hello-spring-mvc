@@ -32,20 +32,24 @@ public class GlobalFilter implements Filter {
      * @throws ServletException
      */
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+//    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+//        LOGGER.info("doFilter of GlobalFilter called...");
+//        try {
+//            filterChain.doFilter(servletRequest, servletResponse);
+//        } catch (RuntimeException ex) { // 异常从大到小
+//            LOGGER.error("{}", ex.getMessage());
+//            throw ex;
+//        } catch (Exception ex) {
+//            LOGGER.error("{}", ex.getMessage());
+//            throw ex;
+//        } catch (Throwable throwable) {
+//            LOGGER.error("{}", throwable.getMessage());
+//            throw throwable;
+//        }
+//    }
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
         LOGGER.info("doFilter of GlobalFilter called...");
-        try {
-            filterChain.doFilter(servletRequest, servletResponse);
-        } catch (RuntimeException ex) { // 异常从大到小
-            LOGGER.error("{}", ex.getMessage());
-            throw ex;
-        } catch (Exception ex) {
-            LOGGER.error("{}", ex.getMessage());
-            throw ex;
-        } catch (Throwable throwable) {
-            LOGGER.error("{}", throwable.getMessage());
-            throw throwable;
-        }
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
