@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("sysUserService")
 public class SysUserServiceImpl implements SysUserService {
@@ -40,5 +41,11 @@ public class SysUserServiceImpl implements SysUserService {
 //        }
 
         return insert == 1;
+    }
+
+
+    @Override
+    public List<SysUser> selectAll(SysUser sysUser) {
+        return sysUserMapper.selectAll(sysUser);
     }
 }

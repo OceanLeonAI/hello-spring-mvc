@@ -18,17 +18,20 @@
         id
         , username, usercode, password, sex, createdate, isvalid, isstop, organid
     </sql>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sysuser
         where id = #{id,jdbcType=INTEGER}
     </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
         from sysuser
         where id = #{id,jdbcType=INTEGER}
     </delete>
+
     <insert id="insert" parameterType="com.leon.entity.SysUser">
         insert into sysuser (id, username, usercode,
                              password, sex, createdate,
@@ -37,6 +40,7 @@
                 #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP},
                 #{isvalid,jdbcType=INTEGER}, #{isstop,jdbcType=INTEGER}, #{organid,jdbcType=INTEGER})
     </insert>
+
     <insert id="insertSelective" parameterType="com.leon.entity.SysUser">
         insert into sysuser
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -98,6 +102,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.leon.entity.SysUser">
         update sysuser
         <set>
@@ -128,6 +133,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+
     <update id="updateByPrimaryKey" parameterType="com.leon.entity.SysUser">
         update sysuser
         set username   = #{username,jdbcType=VARCHAR},
@@ -140,4 +146,11 @@
             organid    = #{organid,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="selectAll" resultType="com.leon.entity.SysUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sysuser
+    </select>
+
 </mapper>

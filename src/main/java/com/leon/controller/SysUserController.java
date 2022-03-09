@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -37,6 +38,19 @@ public class SysUserController {
         map.put("message", insert ? "新增成功" : "新增失败");
 
         return map;
+    }
+
+    /**
+     * 查询所有用户信息
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/selectAll")
+    public List<SysUser> selectAll(HttpServletRequest request) {
+        List<SysUser> sysUserList = sysUserService.selectAll(null);
+        request.setAttribute("sysUserList", sysUserList);
+        return sysUserList;
     }
 
 }
