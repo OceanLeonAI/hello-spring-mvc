@@ -54,9 +54,49 @@
 <div>用户名：${user.username}</div>
 <div>用户编码：${user.usercode}</div>
 <div class="button" onclick="addUser();">add user</div>
+<hr/>
+<div class="button" style="background: orange" onclick="queryUser();">query user</div>
 </body>
 </html>
 <script type="text/javascript">
+
+    function queryUser() {
+
+        console.log("selectAll ======");
+
+        var obj = {"username": "zhangsan"};
+
+        $.ajax({
+            url: '<%=path%>/user/selectAll',
+            type: 'POST', //POST/GET
+            async: true,    //或false,是否异步
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj), // 后台用 @RequestBody形式接收参数，前台需要传递JSON字符串
+            // data: obj, // 模拟 http 400 Bad Request
+            // timeout: 5000,    //超时时间
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend: function (xhr) {
+                console.log('发送前')
+                console.log(xhr)
+            },
+            success: function (data, textStatus, jqXHR) {
+                // debugger;
+                console.log('成功')
+                console.log(data)
+                console.log(textStatus)
+                console.log(jqXHR)
+            },
+            error: function (xhr, textStatus) {
+                // debugger;
+                console.log('错误')
+                console.log(xhr)
+                console.log(textStatus)
+            },
+            complete: function () {
+                console.log('结束')
+            }
+        });
+    }
 
     function addUser() {
 

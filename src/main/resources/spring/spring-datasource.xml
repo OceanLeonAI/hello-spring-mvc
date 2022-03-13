@@ -25,12 +25,12 @@
     </bean>-->
 
     <!-- jndi 连接 -->
-    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="java:comp/env/jdbc/sqlserver"></property>
-    </bean>
-
     <!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="java:comp/env/jdbc/mysql"></property>
+        <property name="jndiName" value="java:comp/env/jdbc/sqlserver"></property>
     </bean>-->
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/mysql"></property>
+    </bean>
 
 </beans>
