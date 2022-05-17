@@ -31,7 +31,7 @@
         }
 
         .button {
-            width: 100px;
+            width: 150px;
             height: 40px;
             line-height: 40px;
             cursor: pointer;
@@ -56,13 +56,32 @@
 <div class="button" onclick="addUser();">add user</div>
 <hr/>
 <div class="button" style="background: orange" onclick="queryUser();">query user</div>
+<hr/>
+<div class="button" style="background: yellowgreen" onclick="multiQueryUser('task1');">query user</div>
+<hr/>
+<div class="button" style="background: greenyellow" onclick="multiQueryUser('task2');">query user</div>
+<hr/>
+<div class="button" style="background: lightgoldenrodyellow" onclick="multiQueryUser('task3');">query user</div>
 </body>
 </html>
 <script type="text/javascript">
 
+    function multiQueryUser(str) {
+
+        if (!str) {
+            str = "";
+        }
+
+        for (let i = 0; i < 2000; i++) {
+            console.log(str + " 第" + (i + 1) + "次查询开始")
+            queryUser();
+            console.log(str + "第" + (i + 1) + "次查询结束")
+        }
+    }
+
     function queryUser() {
 
-        console.log("selectAll ======");
+        // console.log("selectAll ======");
 
         var obj = {"username": "zhangsan"};
 
@@ -76,24 +95,24 @@
             // timeout: 5000,    //超时时间
             dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend: function (xhr) {
-                console.log('发送前')
-                console.log(xhr)
+                // console.log('发送前')
+                // console.log(xhr)
             },
             success: function (data, textStatus, jqXHR) {
                 // debugger;
-                console.log('成功')
-                console.log(data)
-                console.log(textStatus)
-                console.log(jqXHR)
+                // console.log('成功')
+                // console.log(data)
+                // console.log(textStatus)
+                // console.log(jqXHR)
             },
             error: function (xhr, textStatus) {
                 // debugger;
-                console.log('错误')
-                console.log(xhr)
-                console.log(textStatus)
+                // console.log('错误')
+                // console.log(xhr)
+                // console.log(textStatus)
             },
             complete: function () {
-                console.log('结束')
+                // console.log('结束')
             }
         });
     }

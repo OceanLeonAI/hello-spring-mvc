@@ -46,6 +46,12 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public List<SysUser> selectAll(SysUser sysUser) {
+        try {
+            System.err.println("进入service。。。");
+            Thread.sleep(1000 * 1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return sysUserMapper.selectAll(sysUser);
     }
 }

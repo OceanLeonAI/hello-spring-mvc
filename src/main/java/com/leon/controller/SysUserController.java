@@ -46,6 +46,7 @@ public class SysUserController {
      * @param request
      * @return
      */
+    @ResponseBody
     @RequestMapping("/selectAll")
     public List<SysUser> selectAll(HttpServletRequest request) {
         List<SysUser> sysUserList = sysUserService.selectAll(null);
