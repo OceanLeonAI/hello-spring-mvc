@@ -4,6 +4,15 @@
 >
 > https://blog.csdn.net/py_xin/article/details/52052627
 
+
+## SpringMVC 扫描配置
+use-default-filters 意思是扫描该配置包以及子包..下面的所有类型的注解,包括但不限于  Controller、Service、Component...
+
+springmvc只扫描Controller,不扫描其他的，那么就需要把use-default-filters设置为false,都不扫描。  然后加上include-filter表示只扫描Controller.
+
+spring的话，不把use-default-filters设置为false，让他默认，也就是全部扫描，但是我们又不要Controller,所以再加上exclude-filter，排除掉Controller就可以了哈。
+> [springmvc component-scan](https://blog.csdn.net/forever_together/article/details/116160517)
+
 # 事务
 
 > https://www.cnblogs.com/jing99/p/11495252.html
@@ -147,8 +156,6 @@ tomcat 策略修改
 	tomcat.util.http.parser.HttpParser.requestTargetAllow=|{}
     org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
 ```
-
-
 
 | 解决方法        | 结果      | 说明                                              | 参考                                                         |
 | --------------- | --------- | ------------------------------------------------- | ------------------------------------------------------------ |

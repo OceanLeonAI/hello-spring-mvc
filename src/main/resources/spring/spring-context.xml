@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd">
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task.xsd">
 
     <!--声明使用注解配置-->
     <context:annotation-config/>
 
-    <!-- Spring容器中注册非@controller注解的Bean -->
-    <context:component-scan base-package="com.leon.**">
+    <!-- 开启定时任务 -->
+    <task:annotation-driven/>
+
+    <!--
+        use-default-filters 意思是扫描该配置包以及子包..下面的所有类型的注解,包括但不限于  Controller、Service、Component...
+
+        springmvc只扫描Controller,不扫描其他的，那么就需要把use-default-filters设置为false,都不扫描。  然后加上include-filter表示只扫描Controller.
+
+        spring的话，不把use-default-filters设置为false，让他默认，也就是全部扫描，但是我们又不要Controller,所以再加上exclude-filter，排除掉Controller就可以了哈。
+    -->
+    <!-- Spring容器中注册 非@controller 注解的Bean -->
+    <context:component-scan base-package="com.leon.**" use-default-filters="true">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
