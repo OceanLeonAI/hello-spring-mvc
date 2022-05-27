@@ -20,9 +20,11 @@
             <list>
                 <!-- 可以将配置文件放这个节点 -->
                 <value>classpath:jdbc.properties</value>
+                <value>classpath:threadPool.properties</value>
             </list>
         </property>
     </bean>
+
 
     <!-- Spring Bean 工具类 -->
     <bean id="serviceLocator" class="com.leon.utils.ServiceLocator"></bean>

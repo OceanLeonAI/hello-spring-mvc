@@ -72,11 +72,11 @@
             str = "";
         }
 
-        for (let i = 0; i < 2000; i++) {
-            console.log(str + " 第" + (i + 1) + "次查询开始")
-            queryUser();
-            console.log(str + "第" + (i + 1) + "次查询结束")
-        }
+        // for (let i = 0; i < 2000; i++) {
+        //     console.log(str + " 第" + (i + 1) + "次查询开始")
+        //     queryUser();
+        //     console.log(str + "第" + (i + 1) + "次查询结束")
+        // }
     }
 
     function queryUser() {
