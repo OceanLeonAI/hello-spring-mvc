@@ -22,15 +22,15 @@
                 <!-- 可以将配置文件放这个节点 -->
                 <value>classpath:jdbc.properties</value>
                 <value>classpath:threadPool.properties</value>
+                <value>classpath:user.properties</value> <!-- 注意这个映射顺序，spring会从上到下找key对应的value 比如配置文件中的 ${user.username} -->
             </list>
         </property>
+<!--        <property name="locations" value="classpath*:*.properties"/>-->
     </bean>
 
 
-    <!-- Spring Bean 工具类 -->
-    <bean id="serviceLocator" class="com.leon.utils.ServiceLocator"></bean>
-
     <!-- 导入相关配置文件 -->
+    <import resource="spring/spring-bean.xml"/>
     <import resource="spring/spring-context.xml"/>
     <import resource="spring/spring-datasource.xml"/>
     <import resource="spring/spring-mybatis.xml"/>
