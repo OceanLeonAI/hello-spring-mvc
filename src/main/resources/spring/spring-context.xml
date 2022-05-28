@@ -16,6 +16,28 @@
     <!-- 开启定时任务 -->
     <task:annotation-driven/>
 
+    <!-- 线程池配置 -->
+    <bean id="customisedTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数 -->
+        <property name="corePoolSize" value="${async.executor.thread.core_pool_size}"/>
+        <!-- 最大线程数 -->
+        <property name="maxPoolSize" value="${async.executor.thread.max_pool_size}"/>
+        <!-- 队列最大长度 -->
+        <property name="queueCapacity" value="${async.executor.thread.queue_capacity}"/>
+        <!-- 线程池维护线程所允许的空闲时间，默认为60s -->
+        <property name="keepAliveSeconds" value="${async.executor.thread.keep_alive_seconds}"/>
+        <!-- 前缀 -->
+        <property name="threadNamePrefix" value="${async.executor.thread.name.prefix}"/>
+        <!-- 丢弃策略 -->
+        <property name="rejectedExecutionHandler">
+            <!-- AbortPolicy:直接抛出java.util.concurrent.RejectedExecutionException异常 -->
+            <!-- CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->
+            <!-- DiscardOldestPolicy:抛弃旧的任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <!-- DiscardPolicy:抛弃当前任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
+
     <!--
         use-default-filters 意思是扫描该配置包以及子包..下面的所有类型的注解,包括但不限于  Controller、Service、Component...
 
